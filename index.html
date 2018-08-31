@@ -231,6 +231,9 @@
                     <a href="#registration" class="toc-h2 toc-link" data-title="Registration">Registration</a>
                   </li>
                   <li>
+                    <a href="#user-verification" class="toc-h2 toc-link" data-title="User Verification">User Verification</a>
+                  </li>
+                  <li>
                     <a href="#pin-creation" class="toc-h2 toc-link" data-title="PIN Creation">PIN Creation</a>
                   </li>
                   <li>
@@ -382,8 +385,8 @@ You must replace <code>9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2</code> with you
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User created"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2"</span><span class="w">
@@ -419,14 +422,13 @@ You must replace <code>9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2</code> with you
 </tbody></table>
 
 <aside class="success">
-200 - Success
+201 - User created
 </aside>
 
 <aside class="warning">
 401 - Unauthorized
 </aside>
-<h2 id='pin-creation'>PIN Creation</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/users/register/pin"</span>
-  -H <span class="s2">"Authorization: Bearer &lt;TOKEN&gt;"</span>
+<h2 id='user-verification'>User Verification</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/users/verify"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -440,10 +442,55 @@ You must replace <code>9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2</code> with you
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint completes the registraion with PIN code.</p>
+<p>This endpoint verifies the user&#39;s account through a verification code sent via email.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST http://example.com/api/users/register/pin</code></p>
+<p><code>POST http://example.com/api/users/verify</code></p>
 <h3 id='body-parameters-2'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>Integer</td>
+<td>The user_id of the user to register</td>
+</tr>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>The verification code received by the user</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+200 - Success
+</aside>
+
+<aside class="warning">
+401 - Unauthorized
+</aside>
+<h2 id='pin-creation'>PIN Creation</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/users/register/pin"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PIN created"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint completes the registraion with PIN code.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST http://example.com/api/users/register/pin</code></p>
+<h3 id='body-parameters-3'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -464,7 +511,7 @@ You must replace <code>9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2</code> with you
 </tbody></table>
 
 <aside class="success">
-200 - Success
+201 - PIN created
 </aside>
 
 <aside class="warning">
@@ -486,9 +533,9 @@ You must replace <code>9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2</code> with you
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves token for user.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST http://example.com/api/users/login</code></p>
-<h3 id='body-parameters-3'>Body Parameters</h3>
+<h3 id='body-parameters-4'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -531,9 +578,9 @@ You must replace <code>9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2</code> with you
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves token for user.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST http://example.com/api/users/login/pin</code></p>
-<h3 id='body-parameters-4'>Body Parameters</h3>
+<h3 id='body-parameters-5'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -572,9 +619,9 @@ You must replace <code>9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2</code> with you
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint changes the password of user.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST http://example.com/api/users/password</code></p>
-<h3 id='body-parameters-5'>Body Parameters</h3>
+<h3 id='body-parameters-6'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -618,9 +665,9 @@ You must replace <code>9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2</code> with you
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint changes the pin of user.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST http://example.com/api/users/pin</code></p>
-<h3 id='body-parameters-6'>Body Parameters</h3>
+<h3 id='body-parameters-7'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -672,7 +719,7 @@ You must replace <code>9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2</code> with you
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific user.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET http://example.com/api/users/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -708,9 +755,9 @@ You must replace <code>9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2</code> with you
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint logouts the user.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST http://example.com/api/users/logout</code></p>
-<h3 id='body-parameters-7'>Body Parameters</h3>
+<h3 id='body-parameters-8'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -896,7 +943,7 @@ Default base currency is PHP and base value is 1.
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
           </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Black Panther"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.imageurl.com/bp/bp-large.png"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"featured_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="w">
+          </span><span class="s2">"display_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -909,7 +956,7 @@ Default base currency is PHP and base value is 1.
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w">
           </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steam"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.imageurl.com/steam/steam-large.png"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"featured_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="w">
+          </span><span class="s2">"display_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -980,7 +1027,16 @@ Default base currency is PHP and base value is 1.
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"genre"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"Games"</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Action"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.imageurl.com/icons/genre/action.png"</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Movies"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.imageurl.com/icons/genre/movies.png"</span><span class="p">,</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"media_images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"http://www.imageurl.com/steam/steam-1.png"</span><span class="w">
@@ -993,7 +1049,7 @@ Default base currency is PHP and base value is 1.
 </span></code></pre>
 <p>This endpoint retrieves the shop contents.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/api/shop/&lt;ID&gt;</code></p>
+<p><code>GET http://example.com/api/shop/{id}</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
