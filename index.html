@@ -293,7 +293,7 @@
             <a href="#conversion" class="toc-h1 toc-link" data-title="Conversion">Conversion</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#airtime-credits" class="toc-h2 toc-link" data-title="Airtime Credits">Airtime Credits</a>
+                    <a href="#convert" class="toc-h2 toc-link" data-title="Convert">Convert</a>
                   </li>
               </ul>
           </li>
@@ -879,7 +879,7 @@ Default base currency is PHP and base value is 1.
 <aside class="warning">
 401 - Unauthorized
 </aside>
-<h1 id='wallet'>Wallet</h1><h2 id='get-wallet'>Get Wallet</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/wallet/&lt;ID&gt;"</span>
+<h1 id='wallet'>Wallet</h1><h2 id='get-wallet'>Get Wallet</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/wallet"</span>
   -H <span class="s2">"Authorization: Bearer &lt;TOKEN&gt;"</span>
 </code></pre>
 <blockquote>
@@ -889,19 +889,29 @@ Default base currency is PHP and base value is 1.
   </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x9ivrb24b5obp25pnu12ldvjd897b"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"load"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"xon"</span><span class="p">:</span><span class="w"> </span><span class="mi">520</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"xonio"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"wallet"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"load"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x9ivrb24b5obp25pnu12ldvjd897b"</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xon"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x9ivrb24b5obp25pnu12ldvjd897b"</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xonio"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x9ivrb24b5obp25pnu12ldvjd897b"</span><span class="p">,</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves the wallet of user.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/wallet/1</code></p>
+<p><code>GET http://example.com/api/wallet/</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
 <tr>
@@ -1129,7 +1139,7 @@ Default base currency is PHP and base value is 1.
 <aside class="warning">
 401 - Unauthorized
 </aside>
-<h1 id='conversion'>Conversion</h1><h2 id='airtime-credits'>Airtime Credits</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/convert/xon"</span>
+<h1 id='conversion'>Conversion</h1><h2 id='convert'>Convert</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/convert/xon"</span>
   -H <span class="s2">"Authorization: Bearer &lt;TOKEN&gt;"</span>
 </code></pre>
 <blockquote>
@@ -1142,17 +1152,29 @@ Default base currency is PHP and base value is 1.
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@D:2015-12-10T12:34:56"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">19267343928</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"load"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"xon"</span><span class="p">:</span><span class="w"> </span><span class="mi">520</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"xonio"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"wallet"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"load"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x9ivrb24b5obp25pnu12ldvjd897b"</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xon"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x9ivrb24b5obp25pnu12ldvjd897b"</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xonio"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x9ivrb24b5obp25pnu12ldvjd897b"</span><span class="p">,</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint converts load to xon credits.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST http://example.com/api/convert/xon</code></p>
+<p><code>POST http://example.com/api/convert/</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
 <tr>
@@ -1167,9 +1189,19 @@ Default base currency is PHP and base value is 1.
 <td>The id of the user to be charged</td>
 </tr>
 <tr>
-<td>airtime_credit</td>
-<td>Integer</td>
-<td>The total amount of load to charge</td>
+<td>from</td>
+<td>String</td>
+<td>The origin currency code</td>
+</tr>
+<tr>
+<td>to</td>
+<td>String</td>
+<td>The destination currency code</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>BigDecimal</td>
+<td>The amount to be converted</td>
 </tr>
 </tbody></table>
 
