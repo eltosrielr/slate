@@ -235,13 +235,15 @@ This endpoint retrieves category items.
 
 #### HTTP Request
 
-`GET http://example.com/shop/category/{id}`
+`GET http://example.com/shop/category/{id}/`
 
 ### URL Parameters
 
 Parameter | Data Type | Description
 --------- | --------- | ------------
 ID        | Integer   | The id of category to retrieve.
+offset    | Integer   | The page in the item to retrieve.
+limit     | Integer   | The number of items in the item list to retrieve.
 
 <aside class="success">
 200 - Success
